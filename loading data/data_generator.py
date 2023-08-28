@@ -20,7 +20,7 @@ from faker import Faker
 #load product_df
 """
 
-product_df = pd.read_csv('extracted_tiki_data.csv')
+product_df = pd.read_csv('web_scraping\extracted_tiki_data.csv')
 #product_df.head(5)
 
 product_df = product_df.drop('Unnamed: 0', axis=1)
@@ -35,8 +35,14 @@ product_df['id'] = product_df['id'].astype(str)
 product_df['id'] = product_df['id'].str.zfill(id_len)
 product_df['SKU'] = product_df['SKU'].astype(str)
 product_df['SKU'] = product_df['SKU'].str.zfill(SKU_len)
+def truncate_string(s):
+    return s[:100]
+product_df['name'] = product_df['name'].apply(truncate_string)
+
+
 #product_df.head(5)
-product_df.to_csv('product_data.csv')
+
+product_df.to_csv('loading data\product_data.csv')
 """#create Employee_df"""
 
 employee_id = []
@@ -73,7 +79,7 @@ employee_df['email'] = employee_email
 employee_df['employee_id'] = employee_df['employee_id'].astype(str)
 employee_df['employee_id'] = employee_df['employee_id'].str.zfill(6)
 #employee_df.head(5)
-employee_df.to_csv('employyee_data.csv')
+employee_df.to_csv('loading data\employyee_data.csv')
 """#Create Customer_df
 
 """
@@ -116,7 +122,7 @@ customer_df['province_code'] = customer_df['province'].apply(abbreviate)
 customer_df['customer_id'] = customer_df['customer_id'].astype(str)
 customer_df['customer_id'] = customer_df['customer_id'].str.zfill(8)
 #customer_df.head(5)
-customer_df.to_csv("customer_data.csv")
+customer_df.to_csv("loading data\customer_data.csv")
 """#Create order_df"""
 
 order_number = []
@@ -151,4 +157,4 @@ order_df['staff_id'] = order_staff_id
 order_df['order_number'] = order_df['order_number'].astype(str)
 order_df['order_number'] = order_df['order_number'].str.zfill(10)
 #order_df.head(5)
-order_df.to_csv("order_data.csv")
+order_df.to_csv("loading data\order_data.csv")
