@@ -6,9 +6,12 @@ import random
 import time
 from datetime import datetime
 
-orders_df   = pd.read_csv('order_data.csv')
-customer_df   = pd.read_csv('customer_data.csv')
-employee_df   = pd.read_csv('employyee_data.csv')
+orders_df   = pd.read_csv('loading data\order_data.csv')
+customer_df   = pd.read_csv('loading data\customer_data.csv')
+employee_df   = pd.read_csv('loading data\employee_data.csv')
+
+
+customer_df
 
 unique_province = customer_df[['province', 'province_code']].drop_duplicates()
 province_df = pd.DataFrame(unique_province)
@@ -24,8 +27,10 @@ print(province_ids)
 customer_df['province_id'] = province_ids
 
 customer_df = customer_df.drop(['province', 'province_code'],axis=1)
-#print(customer_df.head(5))
-#print(province_df.head(5))
+# update the customer_df
+customer_df.to_csv("loading data\customer_data.csv")
+province_df
+
 """#Creating department_df and normalizing employee_df"""
 
 companys = pd.Series(employee_df.company.unique()).to_list()
@@ -36,11 +41,15 @@ company_df
 
 merged1_df = pd.merge(employee_df, company_df, on='company', how='left')
 company_ids = merged1_df['company_id']
-#print(company_ids)
+print(company_ids)
 
 employee_df['company_id'] = company_ids
 employee_df
 
 employee_df = employee_df.drop(['company'],axis=1)
-print(employee_df.head(5))
-print(company_df.head(5))
+# update the customer_df
+employee_df.to_csv("loading data\employee_data.csv")
+
+# save province and compan to csv
+company_df.to_csv("loading data\company_data.csv")
+province_df.to_csv("loading data\province_data.csv")

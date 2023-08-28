@@ -41,7 +41,6 @@ product_df['name'] = product_df['name'].apply(truncate_string)
 
 
 #product_df.head(5)
-
 product_df.to_csv('loading data\product_data.csv')
 """#create Employee_df"""
 
@@ -79,7 +78,7 @@ employee_df['email'] = employee_email
 employee_df['employee_id'] = employee_df['employee_id'].astype(str)
 employee_df['employee_id'] = employee_df['employee_id'].str.zfill(6)
 #employee_df.head(5)
-employee_df.to_csv('loading data\employyee_data.csv')
+employee_df.to_csv('loading data\employee_data.csv')
 """#Create Customer_df
 
 """
