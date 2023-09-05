@@ -26,7 +26,6 @@ cur = retail_data.cursor() #create a Cursor object and call its execute() method
 
 
 product_df.info()
-cur.execute("DROP TABLE IF EXISTS PRODUCT")
 
 tables_to_create = [
     "PRODUCT",
